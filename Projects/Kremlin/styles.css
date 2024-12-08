@@ -1,0 +1,70 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 50px;
+}
+
+.container {
+    border: 2px solid #c00;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#code-display {
+    font-size: 1.5em;
+    margin: 20px 0;
+}
+
+#digit-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.digit {
+    font-size: 2em;
+    width: 40px;
+    height: 60px;
+    border: 2px solid #c00;
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+}
+
+.drop-area {
+    border: 2px dashed #c00;
+    padding: 20px;
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+#output {
+    margin-top: 20px;
+    font-size: 1.2em;
+    height: 50px;
+}
+
+#draggable-item {
+    font-size: 1.5em;
+    margin: 20px 0;
+    padding: 10px;
+    border: 2px solid #c00;
+    background-color: black;
+    color: white;
+    cursor: grab;
+    display: inline-block;
+    user-select: none;
+}
+
+#draggable-item:active {
+    cursor: grabbing;
+}
+
+footer {
+    text-align: center;
+}
