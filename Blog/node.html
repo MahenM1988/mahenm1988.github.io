@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Host a Simple HTML Webpage with Node.js</title>
+    <!-- Include Prism.js theme for syntax highlighting -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
+    <!-- Include Prism.js script -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+    <!-- Load external css file -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Load external script file, if needed -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="content">
+        <h1>How to Host a Simple HTML Webpage with Node.js</h1>
+
+        <p>This is a basic guide on how to create and host a simple HTML webpage. It includes instructions for local testing in a browser, as well as hosting options on platforms like Render, with the addition of a Node.js server for local development.</p>
+
+        <div class="section">
+            <h2>Step 1: Create Your HTML File</h2>
+            <p>First, let's create the basic HTML file.</p>
+            <div class="example">
+                <pre><code class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Simple Webpage&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+    &lt;script src="script.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Welcome to My Simple HTML Webpage&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+        &lt;p&gt;This is a simple webpage.&lt;/p&gt;
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+            <p>Save this file as <code>index.html</code>.</p>
+        </div>
+
+        <div class="section">
+            <h2>Step 2: Add a Stylesheet</h2>
+            <p>Next, create a CSS file to style your webpage. Here's a simple <code>styles.css</code> file:</p>
+            <div class="example">
+                <pre><code class="language-css">body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+main {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+}</code></pre>
+            </div>
+            <p>Save this file as <code>styles.css</code> in the same directory as your <code>index.html</code> file.</p>
+        </div>
+
+        <div class="section">
+            <h2>Step 3: Add JavaScript</h2>
+            <p>Now, let's add some interactivity with JavaScript. Here's a simple <code>script.js</code> file:</p>
+            <div class="example">
+                <pre><code class="language-javascript">document.addEventListener('DOMContentLoaded', function() {
+    alert('Welcome to my webpage!');
+});</code></pre>
+            </div>
+            <p>Save this file as <code>script.js</code> in the same directory as your <code>index.html</code> file.</p>
+        </div>
+
+        <div class="section">
+            <h2>Step 4: Set Up a Node.js Server</h2>
+            <p>To serve these files dynamically using Node.js, we will create a simple Express server. Here's how you do it:</p>
+            <ol>
+                <li>First, create a new directory for your server setup (e.g., <code>my-node-server</code>).</li>
+                <li>Inside this directory, initialize a new Node.js project:</li>
+                <div class="example">
+                    <pre><code class="language-shell">npm init -y</code></pre>
+                </div>
+                <li>Install Express by running:</li>
+                <div class="example">
+                    <pre><code class="language-shell">npm install express</code></pre>
+                </div>
+                <li>Next, create a file called <code>server.js</code> and paste the following code into it:</li>
+                <div class="example">
+                    <pre><code class="language-javascript">const express = require('express');
+const path = require('path');
+const app = express();
+const port = 3000;
+
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Route for the home page
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Start the server
+app.listen(port, () => {
+    console.log(\`Server running at http://localhost:${port}\`);
+});</code></pre>
+                </div>
+                <li>Now, create a <code>public</code> folder in the same directory as <code>server.js</code> and move your <code>index.html</code>, <code>styles.css</code>, and <code>script.js</code> files into it.</li>
+                <li>Finally, start the server by running the following command:</li>
+                <div class="example">
+                    <pre><code class="language-shell">node server.js</code></pre>
+                </div>
+                <li>Now, visit <code>http://localhost:3000</code> in your browser to see your webpage served by the Node.js server!</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>Step 5: Why GitHub Pages Won't Work</h2>
+            <p>Although GitHub Pages is a popular platform for hosting static websites, it <strong>does not support dynamic server-side code</strong> like Node.js. This means you cannot use Node.js features, such as routing or handling API requests, when hosting on GitHub Pages. It is designed to host only static files (HTML, CSS, JavaScript), and cannot serve dynamic content generated by a backend server.</p>
+            <p>For a project that includes a Node.js server, you should use a platform like <a href="https://render.com" target="_blank">Render</a> or <a href="https://www.heroku.com/" target="_blank">Heroku</a>, which are designed to handle full-stack applications and support backend server functionality.</p>
+        </div>
+
+        <div class="section">
+            <h2>Step 6: Host Your Webpage on Render</h2>
+            <p>Render is a platform that supports Node.js applications. Here's how to host your Node.js server:</p>
+            <ol>
+                <li>Sign up for a Render account at <a href="https://render.com" target="_blank">Render</a>.</li>
+                <li>Create a new Web Service.</li>
+                <li>Choose "Web Service" and link your GitHub repository containing your Node.js project.</li>
+                <li>Render will automatically deploy your site, and you'll be given a URL like <code>https://my-webpage.onrender.com</code>.</li>
+            </ol>
+        </div>
+        <div class="footer">
+            <footer>
+              <p>&copy; Mahen Mahindaratne 2025</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

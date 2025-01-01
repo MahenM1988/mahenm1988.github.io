@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Form Validation Guide</title>
+    <!-- Include Prism.js theme for syntax highlighting -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
+    <!-- Include Prism.js script -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+    <!-- Load external css file -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Load external script file, if needed -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="content">
+        <h1>HTML Form Validation Guide</h1>
+        <p>This guide covers HTML form validation with built-in HTML5 features, custom JavaScript validation, and how to send data to a server.</p>
+
+        <div class="section">
+            <h2>Step 1: Basic HTML Form Structure</h2>
+            <p>Let's start with a simple HTML form:</p>
+            <div class="example">
+                <pre><code class="language-html">&lt;form action=&quot;#&quot; method=&quot;post&quot;&gt;
+    &lt;label for=&quot;name&quot;&gt;Name&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;name&quot; name=&quot;name&quot; required&gt;
+
+    &lt;label for=&quot;email&quot;&gt;Email&lt;/label&gt;
+    &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot; required&gt;
+
+    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+            </div>
+            <p>This form asks for the user's name and email, both of which are required fields.</p>
+            <h3>Result:</h3>
+            <iframe srcdoc="
+                <form action='#' method='post'>
+                    <label for='name'>Name</label>
+                    <input type='text' id='name' name='name' required>
+
+                    <label for='email'>Email</label>
+                    <input type='email' id='email' name='email' required>
+
+                    <button type='submit'>Submit</button>
+                </form>" width="100%" height="200px"></iframe>
+        </div>
+
+        <div class="section">
+            <h2>Step 2: Adding Checkboxes</h2>
+            <p>Checkboxes allow users to select multiple options. Here is an example:</p>
+            <div class="example">
+                <pre><code class="language-html">&lt;label&gt;
+    &lt;input type=&quot;checkbox&quot; name=&quot;newsletter&quot;&gt; Subscribe to newsletter
+&lt;/label&gt;
+&lt;label&gt;
+    &lt;input type=&quot;checkbox&quot; name=&quot;terms&quot;&gt; I agree to the terms and conditions
+&lt;/label&gt;</code></pre>
+            </div>
+            <p>Users can check one or both checkboxes to subscribe to a newsletter or agree to terms.</p>
+            <h3>Result:</h3>
+            <iframe srcdoc="
+                <label>
+                    <input type='checkbox' name='newsletter'> Subscribe to newsletter
+                </label>
+                <label>
+                    <input type='checkbox' name='terms'> I agree to the terms and conditions
+                </label>" width="100%" height="150px"></iframe>
+        </div>
+
+        <div class="section">
+            <h2>Step 3: Radio Buttons</h2>
+            <p>Radio buttons allow the user to select one option from a set. Here's an example:</p>
+            <div class="example">
+                <pre><code class="language-html">&lt;label&gt;
+    &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;male&quot;&gt; Male
+&lt;/label&gt;
+&lt;label&gt;
+    &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt; Female
+&lt;/label&gt;</code></pre>
+            </div>
+            <p>Only one radio button can be selected at a time within the same group, like selecting a gender.</p>
+            <h3>Result:</h3>
+            <iframe srcdoc="
+                <label>
+                    <input type='radio' name='gender' value='male'> Male
+                </label>
+                <label>
+                    <input type='radio' name='gender' value='female'> Female
+                </label>" width="100%" height="150px"></iframe>
+        </div>
+
+        <div class="section">
+            <h2>Step 4: Dropdown Menu (Select)</h2>
+            <p>A dropdown menu allows the user to select one option from a list. Here's an example:</p>
+            <div class="example">
+                <pre><code class="language-html">&lt;label for=&quot;country&quot;&gt;Select Country&lt;/label&gt;
+&lt;select id=&quot;country&quot; name=&quot;country&quot; required&gt;
+    &lt;option value=&quot;usa&quot;&gt;United States&lt;/option&gt;
+    &lt;option value=&quot;canada&quot;&gt;Canada&lt;/option&gt;
+    &lt;option value=&quot;uk&quot;&gt;United Kingdom&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+            </div>
+            <p>In this example, users can select a country from a dropdown list.</p>
+            <h3>Result:</h3>
+            <iframe srcdoc="
+                <label for='country'>Select Country</label>
+                <select id='country' name='country' required>
+                    <option value='usa'>United States</option>
+                    <option value='canada'>Canada</option>
+                    <option value='uk'>United Kingdom</option>
+                </select>" width="100%" height="150px"></iframe>
+        </div>
+
+        <div class="section">
+            <h2>Step 5: Sending Form Data to a Server</h2>
+            <p>To send the form data to a server, we can use the <code>POST</code> method. Here's an example of how to do this:</p>
+            <div class="example">
+                <pre><code class="language-html">&lt;form action=&quot;https://your-server.com/submit&quot; method=&quot;post&quot;&gt;
+    &lt;label for=&quot;name&quot;&gt;Name&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;name&quot; name=&quot;name&quot; required&gt;
+
+    &lt;label for=&quot;email&quot;&gt;Email&lt;/label&gt;
+    &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot; required&gt;
+
+    &lt;label&gt;
+        &lt;input type=&quot;checkbox&quot; name=&quot;newsletter&quot;&gt; Subscribe to newsletter
+    &lt;/label&gt;
+
+    &lt;label&gt;
+        &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;male&quot;&gt; Male
+    &lt;/label&gt;
+    &lt;label&gt;
+        &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt; Female
+    &lt;/label&gt;
+
+    &lt;label for=&quot;country&quot;&gt;Select Country&lt;/label&gt;
+    &lt;select id=&quot;country&quot; name=&quot;country&quot; required&gt;
+        &lt;option value=&quot;usa&quot;&gt;United States&lt;/option&gt;
+        &lt;option value=&quot;canada&quot;&gt;Canada&lt;/option&gt;
+        &lt;option value=&quot;uk&quot;&gt;United Kingdom&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+            </div>
+            <p>The form uses the <code>POST</code> method and sends the data to <code>https://your-server.com/submit</code>.</p>
+            <h3>Result:</h3>
+            <iframe srcdoc="
+                <form action='#' method='post'>
+                    <label for='name'>Name</label>
+                    <input type='text' id='name' name='name' required>
+
+                    <label for='email'>Email</label>
+                    <input type='email' id='email' name='email' required>
+
+                    <label>
+                        <input type='checkbox' name='newsletter'> Subscribe to newsletter
+                    </label>
+                    <label>
+                        <input type='radio' name='gender' value='male'> Male
+                    </label>
+                    <label>
+                        <input type='radio' name='gender' value='female'> Female
+                    </label>
+
+                    <label for='country'>Select Country</label>
+                    <select id='country' name='country' required>
+                        <option value='usa'>United States</option>
+                        <option value='canada'>Canada</option>
+                        <option value='uk'>United Kingdom</option>
+                    </select>
+
+                    <button type='submit'>Submit</button>
+                </form>" width="100%" height="300px"></iframe>
+        </div>
+
+        <div class="section">
+            <h2>Step 6: Client-Side Validation with JavaScript</h2>
+            <p>You can also use JavaScript for custom client-side validation before sending the data to the server:</p>
+            <div class="example">
+                <pre><code class="language-html">&lt;form id=&quot;myForm&quot; action=&quot;https://your-server.com/submit&quot; method=&quot;post&quot;&gt;
+    &lt;label for=&quot;name&quot;&gt;Name&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;name&quot; name=&quot;name&quot; required&gt;
+
+    &lt;label for=&quot;email&quot;&gt;Email&lt;/label&gt;
+    &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot; required&gt;
+
+    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+document.getElementById('myForm').addEventListener('submit', function(event) {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+
+    if (name === '' || email === '') {
+        alert('Please fill out all required fields.');
+        event.preventDefault(); // Prevent form submission
+    }
+});
+&lt;/script&gt;</code></pre>
+            </div>
+            <p>In this example, we prevent the form submission if any required field is empty by displaying an alert message.</p>
+            <h3>Result:</h3>
+            <iframe srcdoc="
+                <form id='myForm' action='#' method='post'>
+                    <label for='name'>Name</label>
+                    <input type='text' id='name' name='name' required>
+
+                    <label for='email'>Email</label>
+                    <input type='email' id='email' name='email' required>
+
+                    <button type='submit'>Submit</button>
+                </form>
+
+                <script>
+                document.getElementById('myForm').addEventListener('submit', function(event) {
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+
+                    if (name === '' || email === '') {
+                        alert('Please fill out all required fields.');
+                        event.preventDefault();
+                    }
+                });
+                </script>" width="100%" height="300px"></iframe>
+        </div>
+
+        <div class="footer">
+            <footer>
+                <p>&copy; Mahen Mahindaratne 2025</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

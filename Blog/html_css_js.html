@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Host a Simple HTML Webpage</title>
+    <!-- Include Prism.js theme for syntax highlighting -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
+    <!-- Include Prism.js script -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+    <!-- Load external css file -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Load external script file, if needed -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="content">
+        <h1>How to Host a Simple HTML Webpage</h1>
+
+        <p>This is a basic guide on how to create and host a simple HTML webpage. It includes instructions for local testing in a browser, as well as hosting options on platforms like Render and GitHub Pages.</p>
+
+        <div class="section">
+            <h2>Step 1: Create Your HTML File</h2>
+            <p>First, let's create the basic HTML file.</p>
+            <div class="example">
+                <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Simple Webpage&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+    &lt;script src="script.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Welcome to My Simple HTML Webpage&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+        &lt;p&gt;This is a simple webpage.&lt;/p&gt;
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+            <p>Save this file as <code>index.html</code>.</p>
+        </div>
+
+        <div class="section">
+            <h2>Step 2: Add a Stylesheet</h2>
+            <p>Next, create a CSS file to style your webpage. Here's a simple <code>styles.css</code> file:</p>
+            <div class="example">
+                <pre><code class="language-css">body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+main {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+}</code></pre>
+            </div>
+            <p>Save this file as <code>styles.css</code> in the same directory as your <code>index.html</code> file.</p>
+        </div>
+
+        <div class="section">
+            <h2>Step 3: Add JavaScript</h2>
+            <p>Now, let's add some interactivity with JavaScript. Here's a simple <code>script.js</code> file:</p>
+            <div class="example">
+                <pre><code class="language-javascript">document.addEventListener('DOMContentLoaded', function() {
+    alert('Welcome to my webpage!');
+});</code></pre>
+            </div>
+            <p>Save this file as <code>script.js</code> in the same directory as your <code>index.html</code> file.</p>
+        </div>
+
+        <div class="section">
+            <h2>Step 4: Open Your Webpage Locally</h2>
+            <p>Once you've created the HTML, CSS, and JavaScript files, you can open the webpage locally in your browser:</p>
+            <ol>
+                <li>Navigate to the folder where your <code>index.html</code> file is located.</li>
+                <li>Double-click the <code>index.html</code> file.</li>
+                <li>Your webpage should open in the browser, displaying your HTML content styled with the CSS and with the JavaScript alert.</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>Step 5: Host Your Webpage on GitHub Pages</h2>
+            <p>GitHub Pages is a simple way to host a static webpage. Here’s how to do it:</p>
+            <ol>
+                <li>Create a GitHub account if you don't have one already.</li>
+                <li>Create a new repository and name it something like <code>my-webpage</code>.</li>
+                <li>Upload your <code>index.html</code>, <code>styles.css</code>, and <code>script.js</code> files to the repository.</li>
+                <li>In the repository settings, scroll down to the "GitHub Pages" section.</li>
+                <li>Under "Source," select the branch <code>main</code> and click "Save."</li>
+                <li>After a few minutes, your website will be available at <code>https://yourusername.github.io/my-webpage/</code>.</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>Step 6: Host Your Webpage on Render</h2>
+            <p>Render is another platform where you can host a simple webpage. Here's how:</p>
+            <ol>
+                <li>Sign up for a Render account at <a href="https://render.com" target="_blank">Render</a>.</li>
+                <li>Create a new Web Service.</li>
+                <li>Choose "Static Site" and link your GitHub repository containing your HTML, CSS, and JS files.</li>
+                <li>Render will automatically deploy your site, and you'll be given a URL like <code>https://my-webpage.onrender.com</code>.</li>
+            </ol>
+        </div>
+        <div class="footer">
+            <footer>
+              <p>&copy; Mahen Mahindaratne 2025</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

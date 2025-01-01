@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Host a Simple HTML Webpage with Flask Server</title>
+    <!-- Include Prism.js theme for syntax highlighting -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
+    <!-- Include Prism.js script -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+    <!-- Include language plugins for Python and Shell -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <!-- Load external css file -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Load external script file, if needed -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="content">
+        <h1>How to Host a Simple HTML Webpage with Flask Server</h1>
+        <p>This is a basic guide on how to create and host a simple HTML webpage. It includes instructions for local testing in a browser, as well as hosting options on platforms like Render, with the addition of a Flask server for local development.</p>
+
+        <h2>1. Create Your HTML File</h2>
+        <p>First, let's create the basic HTML file.</p>
+        <div class="example">
+            <pre><code class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Simple Webpage&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+    &lt;script src="script.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Welcome to My Simple HTML Webpage&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+        &lt;p&gt;This is a simple webpage.&lt;/p&gt;
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+
+        <h2>2. Add a Stylesheet</h2>
+        <p>Next, create a CSS file to style your webpage. Here's a simple <code>styles.css</code> file:</p>
+        <div class="example">
+            <pre><code class="language-css">body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+main {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+}</code></pre>
+        </div>
+
+        <h2>3. Add JavaScript</h2>
+        <p>Now, let's add some interactivity with JavaScript. Here's a simple <code>script.js</code> file:</p>
+        <div class="example">
+            <pre><code class="language-javascript">document.addEventListener('DOMContentLoaded', function() {
+    alert('Welcome to my webpage!');
+});</code></pre>
+        </div>
+
+        <h2>4. Set Up a Flask Server</h2>
+        <p>To serve these files dynamically using Flask, we will create a simple Flask server. Here's how you do it:</p>
+        <ul>
+            <li>First, create a new directory for your Flask project (e.g., <code>my-flask-server</code>).</li>
+            <li>Inside this directory, initialize a new Python environment and install Flask:</li>
+            <div class="example">
+                <pre><code class="language-shell">python -m venv venv
+source venv/bin/activate  # On Windows use 'venv\Scripts\activate'
+pip install flask</code></pre>
+            </div>
+            <li>Create a file called <code>app.py</code> and paste the following code into it:</li>
+            <div class="example">
+                <pre><code class="language-python">from flask import Flask, send_from_directory
+import os
+
+app = Flask(__name__)
+
+# Route for serving the home page
+@app.route('/')
+def home():
+    return send_from_directory(os.getcwd(), 'index.html')
+
+# Route for serving static files (CSS, JS, etc.)
+@app.route('/&lt;path:filename&gt;')
+def serve_static(filename):
+    return send_from_directory(os.getcwd(), filename)
+
+if __name__ == '__main__':
+    app.run(debug=True)</code></pre>
+            </div>
+            <li>Now, create a <code>public</code> folder in the same directory as <code>app.py</code> and move your <code>index.html</code>, <code>styles.css</code>, and <code>script.js</code> files into it.</li>
+            <li>Finally, start the Flask server by running the following command:</li>
+            <div class="example">
+                <pre><code class="language-shell">python app.py</code></pre>
+            </div>
+            <li>Now, visit <code>http://127.0.0.1:5000</code> in your browser to see your webpage served by the Flask server!</li>
+        </ul>
+
+        <h2>5. Why GitHub Pages Won't Work</h2>
+        <p>Although GitHub Pages is a popular platform for hosting static websites, it **does not support dynamic server-side code** like Flask. This means you cannot use Flask to serve your dynamic content, handle routes, or interact with databases when hosting on GitHub Pages. GitHub Pages is designed to host only static files (HTML, CSS, JavaScript), and cannot execute backend server code like Flask.</p>
+        <p>For projects that require backend functionality, such as those built with Flask, you should use a platform like <a href="https://render.com" target="_blank">Render</a> or <a href="https://www.heroku.com/" target="_blank">Heroku</a>, which support running full-stack applications, including Flask and other server-side code.</p>
+
+        <h2>6. Host Your Webpage on Render</h2>
+        <p>Render is a platform that supports Flask applications. Here's how to host your Flask server:</p>
+        <ul>
+            <li>Sign up for a Render account at <a href="https://render.com" target="_blank">Render</a>.</li>
+            <li>Create a new Web Service.</li>
+            <li>Choose "Web Service" and link your GitHub repository containing your Flask project.</li>
+            <li>Render will automatically deploy your site, and you'll be given a URL like <code>https://my-webpage.onrender.com</code>.</li>
+        </ul>
+        <div class="footer">
+            <footer>
+              <p>&copy; Mahen Mahindaratne 2025</p>
+            </footer>
+        </div>
+    </div> 
+</body>
+</html>
