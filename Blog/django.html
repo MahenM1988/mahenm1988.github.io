@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Host a Webpage with Django</title>
+    <!-- Include Prism.js theme for syntax highlighting -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
+    <!-- Include Prism.js script -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+    <!-- Include language plugins for Python and Shell -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <!-- Load external css file -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Load external script file, if needed -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="content">
+        <h1>How to Host a Webpage with Django</h1>
+        <p>This guide explains how to use Django to create and host a simple webpage, including the advantages Django offers over Flask.</p>
+
+        <h2>1. Set Up Your Django Project</h2>
+        <p>Django is a high-level Python web framework that allows for rapid development and clean, pragmatic design. It includes many built-in features such as an admin panel, user authentication, and form handling, which makes it a powerful choice for larger projects. Here's how to get started:</p>
+        <ul>
+            <li>First, create a new directory for your Django project (e.g., <code>my-django-server</code>).</li>
+            <li>Initialize a new Python environment and install Django:</li>
+            <div class="example">
+                <pre><code class="language-shell">python -m venv venv
+source venv/bin/activate  # On Windows use 'venv\Scripts\activate'
+pip install django</code></pre>
+            </div>
+            <li>Now, create a new Django project by running:</li>
+            <div class="example">
+                <pre><code class="language-shell">django-admin startproject mysite</code></pre>
+            </div>
+        </ul>
+
+        <h2>2. Create Your First Django App</h2>
+        <p>In Django, an "app" is a web application that does something specific, such as a blog or a user authentication system. Let's create an app to serve our HTML page.</p>
+        <ul>
+            <li>Inside your project directory, run the following command to create an app:</li>
+            <div class="example">
+                <pre><code class="language-shell">python manage.py startapp homepage</code></pre>
+            </div>
+            <li>In the <code>homepage</code> directory, create a file called <code>views.py</code> to handle requests:</li>
+            <div class="example">
+                <pre><code class="language-python">from django.shortcuts import render
+
+def home(request):
+    return render(request, 'index.html')</code></pre>
+            </div>
+            <li>Now, set up a URL route to point to the view you just created in <code>urls.py</code>:</li>
+            <div class="example">
+                <pre><code class="language-python">from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+]</code></pre>
+            </div>
+        </ul>
+
+        <h2>3. Serve Static Files</h2>
+        <p>In Django, you can serve static files such as CSS, JavaScript, and images with ease. You'll need to set up a directory for your static files and configure Django to serve them.</p>
+        <ul>
+            <li>In your <code>settings.py</code> file, configure the <code>STATICFILES_DIRS</code> setting:</li>
+            <div class="example">
+                <pre><code class="language-python">STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]</code></pre>
+            </div>
+            <li>Make sure to place your <code>index.html</code>, <code>styles.css</code>, and <code>script.js</code> files inside the <code>static</code> directory.</li>
+            <li>In the <code>urls.py</code> file of your project, include the following line to serve static files during development:</li>
+            <div class="example">
+                <pre><code class="language-python">from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('', views.home, name='home'),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)</code></pre>
+            </div>
+        </ul>
+
+        <h2>4. Start the Django Server</h2>
+        <p>Now that you've set up the app and static file serving, it's time to run the server.</p>
+        <ul>
+            <li>In your project directory, run the following command:</li>
+            <div class="example">
+                <pre><code class="language-shell">python manage.py runserver</code></pre>
+            </div>
+            <li>Visit <code>http://127.0.0.1:8000</code> in your browser to see your webpage served by Django!</li>
+        </ul>
+
+        <h2>5. Why Choose Django Over Flask?</h2>
+        <p>While Flask is a lightweight framework that is great for small projects, Django is designed for larger projects and comes with many built-in features that can save time during development. Here's what Django offers:</p>
+        <ul>
+            <li><strong>Admin Interface</strong>: Django provides a powerful admin panel for managing your application's data.</li>
+            <li><strong>Authentication</strong>: Django has built-in user authentication and authorization.</li>
+            <li><strong>Form Handling</strong>: Django includes built-in tools for handling forms, including form validation and submission.</li>
+            <li><strong>ORM (Object-Relational Mapping)</strong>: Django’s ORM allows you to interact with databases using Python code, making it easier to work with relational databases.</li>
+            <li><strong>Scalability</strong>: Django is designed to scale efficiently for large applications with complex requirements.</li>
+        </ul>
+
+        <h2>6. Host Your Django Webpage on Render</h2>
+        <p>Just like Flask, you can deploy your Django project on platforms like Render. Here's how to do it:</p>
+        <ul>
+            <li>Sign up for a Render account at <a href="https://render.com" target="_blank">Render</a>.</li>
+            <li>Create a new Web Service and link your GitHub repository containing your Django project.</li>
+            <li>Render will automatically deploy your site, and you'll be given a URL like <code>https://my-django-app.onrender.com</code>.</li>
+        </ul>
+
+        <div class="footer">
+            <footer>
+              <p>&copy; Mahen Mahindaratne 2025</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
